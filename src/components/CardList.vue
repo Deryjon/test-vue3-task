@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <SortableItem/>
+    <v-select :items="['По возрастанию', 'По убыванию', 'Без сортировки']" label="Выберите" bg-color="#404040" variant="solo"></v-select>
     <section
     :style="`background: ${options.color}`"
     @drop="onDrop($event, options.id)"
