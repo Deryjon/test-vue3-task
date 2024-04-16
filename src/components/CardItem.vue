@@ -164,7 +164,6 @@
       secondList.value = secondList.value.filter((card) => card.id !== props.card.id);
     }
   }
-
   function sortList() {
     getLocalCards();
     if(!downIs.value){
