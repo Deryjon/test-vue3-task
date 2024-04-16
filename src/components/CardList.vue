@@ -1,50 +1,59 @@
 <template>
-  <section
+  <div class="flex">
+    <SortableItem/>
+    <section
     :style="`background: ${options.color}`"
     @drop="onDrop($event, options.id)"
     @dragover.prevent
     @dragenter.prevent>
-    <div class="title">
-      <h2>
-        {{ options.title }}
-      </h2>
-      <div class="counter">
-        <span>{{ cards.length }}</span>
+      <div class="title">
+        <h2>
+          {{ options.title }}
+        </h2>
+        <div class="counter">
+          <span>{{ cards.length }}</span>
+        </div>
       </div>
-    </div>
-    <v-btn
-      icon="mdi-plus"
-      variant="tonal"
-      class="mt-5"
-      color="white"
-      @click="isNewCardDialogOpen = true" />
-
-    <CardItem
-      v-for="(card, index) in cards"
-      draggable="true"
-      :key="index"
-      :card="card"
-      :options="props.options"
-      @delete-card="deleteCard(card.id)"
-      @dragstart="onDragStart($event, card)" />
-
-    <CardForm
-      title="Добавление новой карточки"
-      v-model="isNewCardDialogOpen"
-      :form="form"
-      @save-card="addCard"
-      @close-form="isNewCardDialogOpen = false" />
-  </section>
+      <v-btn
+        icon="mdi-plus"
+        variant="tonal"
+        class="mt-5"
+        color="white"
+        @click="isNewCardDialogOpen = true" />
+  
+      <CardItem
+        v-for="(card, index) in cards"
+        draggable="true"
+        :key="index"
+        :card="card"
+        :options="props.options"
+        @delete-card="deleteCard(card.id)"
+        @dragstart="onDragStart($event, card)" />
+  
+      <CardForm
+        title="Добавление новой карточки"
+        v-model="isNewCardDialogOpen"
+        :form="form"
+        @save-card="addCard"
+        @close-form="isNewCardDialogOpen = false" />
+    </section>
+  </div>
 </template>
 
 <script setup>
   import { ref, inject } from 'vue';
   import CardItem from './CardItem.vue';
   import CardForm from './CardForm.vue';
+import SortableItem from './SortableItem.vue';
 
   const firstList = inject('firstList');
   const secondList = inject('secondList');
   const lastList = inject('lastList');
+
+const items = {
+
+}
+
 
   const props = defineProps({
     options: {},
