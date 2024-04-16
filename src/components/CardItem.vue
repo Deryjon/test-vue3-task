@@ -109,6 +109,8 @@
   const secondList = inject('secondList');
   const lastList = inject('lastList');
 
+  const downIs = ref(false)
+
   const props = defineProps({
     card: {},
     options: {},
@@ -165,7 +167,14 @@
 
   function sortList() {
     getLocalCards();
-    cards = cards.value.sort((a, b) => b.rating.rate - a.rating.rate);
+    if(!downIs.value){
+      cards.value.sort((a, b) => a.rating.rate - b.rating.rate);
+      downIs.value = !downIs.value
+    } else{
+      cards = cards.value.sort((a, b) => b.rating.rate - a.rating.rate);
+      downIs.value = !downIs.value
+
+    }
   }
 </script>
 

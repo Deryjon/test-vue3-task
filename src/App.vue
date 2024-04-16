@@ -1,6 +1,5 @@
 <template>
   <main>
-    <!-- <SortableItem v-for="n in 3" :key="n" /> -->
          <CardList v-for="(item, index) in CardListOptions" :key="index" :options="item" />
   </main>
 </template>
@@ -9,7 +8,6 @@
   import { ref, provide } from 'vue';
   import axios from 'axios';
   import CardList from './components/CardList.vue';
-import SortableItem from './components/SortableItem.vue';
 
   const firstList = ref([]);
   const secondList = ref([]);
